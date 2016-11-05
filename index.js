@@ -68,18 +68,8 @@ function unprivateAndAdd(usernames) {
         body: JSON.stringify({
             permission: 'push'
         })
-    })))
-        .then(Promise.all(usernames.map(username => fetch(`https://DevathonBot:${P_TOKEN}@api.github.com/repos/JoinDevathon/${username}-2016`, {
-            method: 'PATCH',
-            headers: {
-                'User-Agent': 'DevathonStarter',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: `${username}-2016`,
-                private: false
-            })
-        }))));
+    }))).then(() => console.log('Done for', usernames))
+        .catch(err => console.error(err));
 }
 
 function sendEmails(users) {
